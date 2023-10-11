@@ -18,7 +18,7 @@ RUN python -m venv /py && \
             build-base postgresql-dev musl-dev && \
     /py/bin/pip install --no-cache-dir   -r /tmp/requirements.txt && \
     rm -rf /tmp && \
-    apk del .tmp-build.deps && \
+    apk del .tmp-build-deps && \
     adduser \
         --disabled-password \
         --no-create-home \
