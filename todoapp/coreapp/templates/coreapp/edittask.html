@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+<main class="container pt-5">
+    <div class="container-md  text-center">
+        <h1 class="h3"> Edit Task </h1>
+    </div>
+    <hr> 
+    <div class="col text-center">
+        <form action="{% url 'coreapp:edit-task' id%}" method="POST">
+            {% csrf_token %}
+            <div class="col text-center">
+                {% for field in form %}
+                    {{ field.label|capfirst }}: &nbsp;  {{ field }} <br>
+                    {% if field.errors %}
+                        {{ field.errors }}
+                    {% endif %}               
+                {% endfor %}
+            </div>
+            &nbsp; 
+            {% if error_mssg %} {{ error_mssg }} {% endif %}
+            <div class="col text-center">
+                <button type="submit"  class="btn btn-primary btn-md update-button">
+                    Add </button>
+                &nbsp; &nbsp; &nbsp; 
+                <a type="button" class="btn btn-primary btn-sm update-button" 
+                    href="{% url 'coreapp:main-page' %}"> Cancel </a>
+                </div>
+        </form>
+    </div>
+    <hr>
+    <div class="col">
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        <a type="button" class="btn btn-outline-primary btn-lg" 
+            href="{% url 'coreapp:main-page' %}"> All Tasks </a> &nbsp; &nbsp; &nbsp; &nbsp;
+        <a type="button" class="btn btn-primary btn-lg " 
+            href="{% url 'coreapp:completed-tasks' %}"> Completed Tasks </a> &nbsp; &nbsp; &nbsp;
+        <a type="button" class="btn btn-primary btn-lg " 
+            href="{% url 'coreapp:imp-tasks' %}"> Important Tasks </a>
+    </div>
+    <br>
+    <div class="container bg-white shadow-lg p-5 mb-5 form-layout">
+        <h1 class="h3"> All tasks </h1>
+        <br>
+        <ul>
+        {% for task in tasks_list %}
+            {% if  task.is_important == 1 %}
+                <span>&#9733;</span> &nbsp;  {{ task.title | capfirst }} 
+            {% else %}
+                <span>&#9734;</span> &nbsp;  {{ task.title | capfirst }} 
+            {% endif %}     
+            <br>                       
+            <div class="col">
+                <a type="button" class="btn btn-outline-primary btn-sm update-button" 
+                    href="{% url 'coreapp:edit-task' task.id %}">Edit </a>
+                &nbsp; &nbsp; &nbsp;
+                <a type="button" class="btn btn-outline-primary btn-sm update-button" 
+                    href="{% url 'coreapp:done-task' task.id %}">Done </a> 
+            </div>
+            <hr>
+        {% endfor %}
+        </ul>
+    </div>
+ 
+</main>
+
+{% endblock %}
