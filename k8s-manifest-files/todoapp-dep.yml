@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: django
+  template:
+    metadata:
+      labels:
+        app: django
+    spec:
+      containers:
+      - name: django
+        image: kdanjana/todo-postgres:v1
+        env:
+          - name: DB_HOST
+            value: postgres-service
+          - name: DB_NAME
+            value: devdb
+          - name: DB_USERNAME
+            value: devuser
+          - name: DB_PASSWORD
+            value: pwdpwdpwd
+          - name: PORT
+            value: "5432"
+          # Add other environment variables as needed
+        ports:
+        - containerPort: 8000
+        command: ["/bin/sh", "-c"]
+        args:
+         - /scripts/run.sh
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-service
+spec:
+  selector:
+    app: django
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+      nodePort: 30001
+  type: NodePort
