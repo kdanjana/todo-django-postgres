@@ -6,11 +6,11 @@
 
 <main class="container pt-5">
     <div class="container-md  text-center">
-        <h1 class="h3"> Edit Task </h1>
+        <h1 class="h3"> Tasks Todo </h1>
     </div>
     <hr> 
     <div class="col text-center">
-        <form action="" method="POST">
+        <form action="/" method="POST">
             {% csrf_token %}
             <div class="col text-center">
                 {% for field in form %}
