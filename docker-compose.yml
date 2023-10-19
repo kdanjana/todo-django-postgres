@@ -9,14 +9,14 @@ services:
     container_name: appc
     volumes:
       - ./todoapp:/app
-    command: >
-      sh -c "/scripts/run.sh"
     environment:
       - DB_HOST=db
-      - DB_NAME=devdb
-      - DB_USERNAME=devuser
-      - DB_PASSWORD=pwdpwdpwd
+      - DB_NAME=${DB_NAME}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
       - PORT=5432
+      - DEBUG=${debug}
+      - SECRET_KEY=${DJANGO_SECRET_KEY}
     depends_on:
       - db
 
@@ -26,9 +26,9 @@ services:
     volumes:
       - todo-db-data:/var/lib/postgresql/data
     environment:
-      - POSTGRES_DB=devdb
-      - POSTGRES_USER=devuser
-      - POSTGRES_PASSWORD=pwdpwdpwd
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
 
 volumes:
    todo-db-data:

@@ -29,9 +29,6 @@ spec:
           # Add other environment variables as needed
         ports:
         - containerPort: 8000
-        command: ["/bin/sh", "-c"]
-        args:
-         - /scripts/run.sh
 
 ---
 apiVersion: v1
