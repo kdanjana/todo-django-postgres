@@ -1,7 +1,19 @@
-jpeg-dev zlib zlib-dev                               --- needed for pillows
-build-base postgresql-dev musl-dev  postgresql-client --- needed for postgres db
 
---access-logfile=- --error-logfile=- --> to watch logs in the console
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 MainPageView::
 get:    gets all in completed tasks from the db and display them on MainPageView
@@ -33,4 +45,11 @@ to delete task from the db
 
 IncompleteTaskView:
 to mark task as incomplete (is_complete=false)
+
+
+
+jpeg-dev zlib zlib-dev                               --- needed for pillows
+build-base postgresql-dev musl-dev  postgresql-client --- needed for postgres db
+
+--access-logfile=- --error-logfile=- --> to watch logs in the console
 
