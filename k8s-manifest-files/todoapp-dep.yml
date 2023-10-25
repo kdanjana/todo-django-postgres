@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: django
-        image: kdanjana/todo-postgres:v1
+        image: kdanjana/todo-postgres:v2
         env:
           - name: DB_HOST
             value: postgres-service
@@ -26,9 +26,15 @@ spec:
             value: pwdpwdpwd
           - name: PORT
             value: "5432"
-          # Add other environment variables as needed
+          - name: SECRET_KEY
+            value: 'django-insecure-@!n&ny6)x3so^tp)mi4)9ly2c)$_5sry7lsdi%ksw&^0)p9jss'
+          - name: DEBUG
+            value: '1'
         ports:
         - containerPort: 8000
+        # command: ["/bin/sh", "-c"]
+        # args:
+        #  - /scripts/run.sh
 
 ---
 apiVersion: v1
