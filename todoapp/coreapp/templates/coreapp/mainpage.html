@@ -10,6 +10,10 @@
     </div>
     <hr> 
     <div class="col text-center">
+        {% if error_mssg %} {{ error_mssg }} {% endif %}
+    </div>
+    &nbsp;
+    <div class="col text-center">
         <form action="" method="POST">
             {% csrf_token %}
             <div class="col text-center">
@@ -21,7 +25,6 @@
                 {% endfor %}
             </div>
             &nbsp; 
-            {% if error_mssg %} {{ error_mssg }} {% endif %}
             <div class="col text-center">
                 <button type="submit" class="btn btn-primary btn-md update-button">
                     Add </button>

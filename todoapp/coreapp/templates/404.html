@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <title> PagenotFound! </title>
+        <!-- CSS -->        
+        <link rel="stylesheet" href="https://bootswatch.com/5/flatly/bootstrap.min.css">
+    </head>
+    <body>
+        <br> <br> <br> <br> <br>
+        <main class="container">
+            <div class="container-md  text-center">
+                <h1 class="h3"> Sorry,the page you are looking for is not found! </h1>
+            </div>
+            <div class='col text-center'>
+                <a type="button" class="btn btn-primary btn-md" 
+                    href="{% url 'coreapp:main-page' %}"> Main Page </a>
+            </div>
+        </main>
+    </body>
+</html>
+
