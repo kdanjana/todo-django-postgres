@@ -1,6 +1,6 @@
 .git
 .gitignore
-
+images/
 .docker
 
 todoapp/__pycache__/

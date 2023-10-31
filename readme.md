@@ -1,20 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 MainPageView::
 get:    gets all in completed tasks from the db and display them on MainPageView
 post:   add new task, task item entered in the TaskForm() is collected 
