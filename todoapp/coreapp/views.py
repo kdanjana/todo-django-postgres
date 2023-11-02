@@ -77,21 +77,21 @@ class EditTaskView(View):
         """ updates the task title field and is_important field """
         edited_taskform = TaskForm(request.POST)
         if edited_taskform.is_valid():
+            
             new_task_title = edited_taskform.cleaned_data.get('title')
             new_task_imp = edited_taskform.cleaned_data.get('is_important')  
-            tasks_list = Task.objects.filter(is_complete=False)    
+            tasks_list = Task.objects.filter(is_complete=False)
+                
             if Task.objects.filter(title=new_task_title.lower(),is_complete=False).exists():
                 """ check if the updated task is already present in the db"""
-                task = Task.objects.get(id=id)
-                if task.is_important == new_task_imp:
-                    error_mssg = "You already have added this to your list"
-                    context = {
-                        "form": edited_taskform,
-                        "tasks_list": tasks_list,
-                        "error_mssg": error_mssg,
-                        "id": id
-                    }
-                    return render(request,"coreapp/edittask.html", context)
+                error_mssg = "You already have added this to your list"
+                context = {
+                    "form": edited_taskform,
+                    "tasks_list": tasks_list,
+                    "error_mssg": error_mssg,
+                    "id": id
+                }
+                return render(request,"coreapp/edittask.html", context)
            
             task = Task.objects.get(id=id) 
             task.title =  new_task_title
